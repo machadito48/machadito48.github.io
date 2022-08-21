@@ -22,36 +22,61 @@
   </head>
 
   <body>
+    <div
+      class="alert alert-danger alert-dismissible fade"
+      role="alert"
+      id="alert-danger"
+    >
+      <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
     <div class="container">
       <div class="row">
-        <div class="col"></div>
+        <!-- <div class="col"></div> -->
         <div class="col">
           <div class="text-center">
-            <img src="img/login.png" alt="" width="500"/>
+            <img src="img/login.png" alt="" width="500" />
           </div>
           <h2 class="fw-bold text-center py-5">Bienvenido</h2>
 
           <form action="#">
             <div class="mb-4">
               <label for="email" class="form-label">Correo electronico</label>
-              <input type="email" class="form-control" name="email" />
+              <input type="email" class="form-control" name="email" id="email" />
             </div>
             <div class="mb-4">
               <label for="password" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" name="password" />
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                id="password"
+              />
             </div>
             <div class="mb-4 form-check">
               <input
                 type="checkbox"
                 name="connected"
                 class="form-check-input"
+                id="connected"
               />
               <label for="connected" class="form-check-label"
                 >Mantener conectado</label
               >
             </div>
             <div class="d-grid">
-              <button type="submit" class="btn btn-primary">Entrar</button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                onclick="checkCred()"
+              >
+                Entrar
+              </button>
             </div>
             <div class="my-3">
               <span>No tienes cuenta? <a href="#">Regístrate</a></span
@@ -69,11 +94,9 @@
                 <button class="btn-outline-danger w-100 my-1">
                   <div class="row align-items-center">
                     <div class="col-2">
-                      <img src="img/Google_Icon.png" width="32" alt="">
+                      <img src="img/Google_Icon.png" width="32" alt="" />
                     </div>
-                    <div class="col-10 text-center">
-                      Google
-                    </div>
+                    <div class="col-10 text-center">Google</div>
                   </div>
                 </button>
               </div>
@@ -83,7 +106,7 @@
       </div>
     </div>
 
-<!--         <main class="form-signin">
+    <!--         <main class="form-signin">
       <form>
         <img class="mb-4" src="img/login.png" alt="loggin image">
         <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
@@ -106,14 +129,14 @@
       </form>
     </main> -->
 
-<!--     <main class="mt-5">
+    <!--     <main class="mt-5">
       <div class="container">
         <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
       </div>
       </div>
     </main> -->
-    
+
     <footer class="text-muted">
       <div class="container">
         <p class="float-end">
@@ -132,6 +155,19 @@
         </p>
       </div>
     </footer>
+    <div
+      class="alert alert-danger alert-dismissible fade"
+      role="alert"
+      id="alert-danger"
+    >
+      <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
     <script src="js/login.js"></script>
   </body>
 </html>
