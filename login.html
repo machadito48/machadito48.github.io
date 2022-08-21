@@ -1,40 +1,142 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: rgb(248, 249, 250);
-    }
-  </style>
-</head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+      body {
+        background-color: rgb(248, 249, 250);
+      }
+    </style>
+  </head>
 
-<body>
-  <main class="mt-5">
+  <body>
+    <div
+      class="alert alert-danger alert-dismissible fade"
+      role="alert"
+      id="alert-danger"
+    >
+      <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="row">
+        <!-- <div class="col"></div> -->
+        <div class="col">
+          <div class="text-center">
+            <img src="img/login.png" alt="" width="500" />
+          </div>
+          <h2 class="fw-bold text-center py-5">Bienvenido</h2>
+
+          <form class="needs-validation" action="#">
+            <div class="mb-4">
+              <label for="email" class="form-label">Correo electronico</label>
+              <input type="email" class="form-control" name="email" id="email" />
+            </div>
+            <div class="mb-4">
+              <label for="password" class="form-label">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                id="password"
+              />
+            </div>
+            <div class="mb-4 form-check">
+              <input
+                type="checkbox"
+                name="connected"
+                class="form-check-input"
+                id="connected"
+              />
+              <label for="connected" class="form-check-label"
+                >Mantener conectado</label
+              >
+            </div>
+            <div class="d-grid">
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="checkCred()"
+              >
+                Entrar
+              </button>
+            </div>
+            <div class="my-3">
+              <span>No tienes cuenta? <a href="#">Regístrate</a></span
+              ><br />
+              <span><a href="#">Recuperar Contraseña</a></span>
+            </div>
+          </form>
+          <!-- LOGGIN REDES -->
+          <!-- <div class="container w-100 my-5">
+            <div class="row text-center my-3">
+              <div class="col fw-bold">Iniciar con</div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <button class="btn-outline-danger w-100 my-1">
+                  <div class="row align-items-center">
+                    <div class="col-2">
+                      <img src="img/Google_Icon.png" width="32" alt="" />
+                    </div>
+                    <div class="col-10 text-center">Google</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div> -->
+        </div>
       </div>
     </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
-  <script src="js/login.js"></script>
-</body>
 
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+          - 2022
+        </p>
+        <p>
+          Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
+          letra del obligatorio.
+        </p>
+      </div>
+    </footer>
+    <div
+      class="alert alert-danger alert-dismissible fade"
+      role="alert"
+      id="alert-danger"
+    >
+      <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    <script src="js/login.js"></script>
+  </body>
 </html>

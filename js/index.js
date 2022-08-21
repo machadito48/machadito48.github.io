@@ -12,3 +12,12 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+function logCheck(){
+    if(localStorage.getItem("login") === null){
+        window.location.href="login.html"
+    }
+}
+function salir(){
+    localStorage.clear();
+}
