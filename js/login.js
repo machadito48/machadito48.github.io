@@ -4,7 +4,9 @@ function logSuccess() {
 }
 
 function logError() {
-  document.getElementById("alert-danger").classList.add("show");
+  var inp1 = document.getElementById("email");
+  var inp2 = document.getElementById("password");
+  inp1.classList.add("")
 }
 
 function checkCred() {
@@ -13,11 +15,15 @@ function checkCred() {
   let checkbox = document.getElementById("connected");
     console.log(emailInput)
     console.log(passInput)
-    console.log(checkbox)
-  if (emailInput.lenght ===0 || passInput.lenght === 0 || !checkbox.checked) {
+  if (emailInput ==="") {
     logError();
     return;
   } 
+  if (passInput ===""){
+    logError();
+    return;
+  }
+  
   logSuccess();
 }
 
