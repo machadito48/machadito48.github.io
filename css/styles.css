@@ -188,3 +188,10 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.log-inp-error {
+  border-color:crimson;
+}
+.warning {
+  color: crimson;
+}

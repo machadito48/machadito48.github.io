@@ -6,7 +6,9 @@ function logSuccess() {
 function logError() {
   var inp1 = document.getElementById("email");
   var inp2 = document.getElementById("password");
-  inp1.classList.add("")
+  inp1.classList.add("log-inp-error")
+  inp2.classList.add("log-inp-error")
+  document.getElementById("alertloggin").innerHTML = "Datos incorrectos"
 }
 
 function checkCred() {
