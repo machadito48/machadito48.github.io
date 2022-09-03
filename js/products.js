@@ -30,7 +30,7 @@ function showProductsList(array){
 }
 
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCTS_URL).then(function(resultObj){
+    getJSONData(PRODUCTS_URL+localStorage.getItem("catID")+".json").then(function(resultObj){
         if (resultObj.status === "ok")
         {
             productsArray = resultObj.data;

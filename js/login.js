@@ -1,4 +1,5 @@
 function logSuccess() {
+  localStorage.setItem("user",document.getElementById("email").value);
   localStorage.setItem("login", "login");
   window.location.href = "index.html";
 }

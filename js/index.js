@@ -21,3 +21,5 @@ function logCheck(){
 function salir(){
     localStorage.clear();
 }
+
+document.getElementById("user").innerHTML = localStorage.getItem("user")
