@@ -54,25 +54,27 @@
           Verás aquí todos los productos de la categoria Autos.
         </p>
       </div>
-
-
+      
+      
       <!-- formato filtros (categories.html) -->
       <div class="container">
         <div class="row">
           <div class="col text-end">
             <div
-              class="btn-group btn-group-toggle mb-4"
-              data-bs-toggle="buttons"
+            class="btn-group btn-group-toggle mb-4"
+            data-bs-toggle="buttons"
             >
+              <!-- precio ascendente -->
               <input
-                type="radio"
-                class="btn-check"
-                name="options"
-                id="sortAsc"
+              type="radio"
+              class="btn-check"
+              name="options"
+              id="sortAsc"
               />
               <label class="btn btn-light" for="sortAsc">
                 <i class="fas fa-sort-amount-down mr-1">$</i>
               </label>
+                <!-- precio descendente -->
               <input
               type="radio"
               class="btn-check"
@@ -82,67 +84,72 @@
               <label class="btn btn-light" for="sortDesc">
                 <i class="fas fa-sort-amount-up mr-1">$</i>
               </label>
+              <!-- descendente por relevancia (cant ventas) -->
               <input
-                type="radio"
-                class="btn-check"
+              type="radio"
+              class="btn-check"
                 name="options"
                 id="sortByCount"
                 checked
-              />
-              <label class="btn btn-light" for="sortByCount">
-                <i class="fas fa-sort-amount-down mr-1">Rel</i>
-              </label>
+                />
+                <label class="btn btn-light" for="sortByCount">
+                  <i class="fas fa-sort-amount-down mr-1">Rel</i>
+                </label>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
-            <div class="row container p-0 m-0">
-              <div class="col">
-                <p class="font-weight-normal text-end my-2">Cant.</p>
-              </div>
-              <div class="col">
-                <input
+          <div class="row">
+            <div class="col-md-12 mb-1 container">
+              <div class="row container p-0 m-0">
+                <!-- <div class="col">
+                  <p class="font-weight-normal text-end my-2">Cant.</p>
+                </div> -->
+                <div class="col-8">
+                  <input 
+                  class="form-control" 
+                  type="text" 
+                  placeholder="Buscar por..."
+                  id="filterSearchBar"
+                  />
+                </div>
+                <div class="col-2">
+                  <input
                   class="form-control"
                   type="number"
                   placeholder="min."
-                  id="rangeFilterCountMin"
-                />
-              </div>
-              <div class="col">
-                <input
+                  id="rangeFilterPriceMin"
+                  />
+                </div>
+                <div class="col-2">
+                  <input
                   class="form-control"
                   type="number"
                   placeholder="máx."
-                  id="rangeFilterCountMax"
-                />
-              </div>
-              <div class="col-3 p-0">
-                <div class="btn-group" role="group">
-                  <button class="btn btn-light btn-block" id="rangeFilterCount">
-                    Filtrar
-                  </button>
-                  <button class="btn btn-link btn-sm" id="clearRangeFilter">
-                    Limpiar
-                  </button>
+                  id="rangeFilterPriceMax"
+                  />
                 </div>
+                <!-- <div class="col-3 p-0">
+                  <div class="btn-group" role="group">
+                    <button class="btn btn-light btn-block" id="rangeFilterCount">
+                      Filtrar
+                    </button>
+                    <button class="btn btn-link btn-sm" id="clearRangeFilter">
+                      Limpiar
+                    </button>
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>
-        </div>
-        <div class="row"> 
-          <div class="list-group" id="cat-list-container">
-            <!-- aca entra el html por js -->
+          <div class="row"> 
+            <div class="list-group" id="cat-list-container">
+              <!-- aca entra el html por js -->
+            </div>
           </div>
-        </div>
-      </di
-
-
-      <!--
+      <!-- </div>
         <div class="alert alert-danger text-center" role="alert">
           <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-        </div> 
-        -->
+        </div>  -->
     </main>
     <footer class="text-muted">
       <div class="container">
