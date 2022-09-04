@@ -1,40 +1,123 @@
 let productsArray = [];
 
-function showProductsList(array){
-    let htmlContentToAppend = "";
-/* precio, nombre, descripción, cantidad vendidos e imagen */
-    for(let i = 0; i < array.products.length; i++){ 
-        let products = array.products[i];
-        htmlContentToAppend += `
-        
-        <div class="list-group-item list-group-item-action">
+/* document.addEventListener("DOMContentLoaded", function (e) {
+    getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + ".json").then(
+      function (resultObj) {
+        if (resultObj.status === "ok") {
+          productsArray = resultObj.data.products;
+          showProductsList(productsArray);
+        }
+      }
+    ); 
+  }); */
+
+//newFunction();
+
+fetch(PRODUCTS_URL)
+  .then((response) => response.json())
+  .then((data) => {
+    productsArray = data.products;
+    showProductsList(productsArray);
+  });
+
+function showProductsList(array) {
+  let htmlContentToAppend = "";
+  /* precio, nombre, descripción, cantidad vendidos e imagen */
+  for (let i = 0; i < array.length; i++) {
+    let products = array[i];
+    htmlContentToAppend +=
+      ` <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
-                    <img src="` + products.image + `" alt="product image" class="img-thumbnail">
+                    <img src="` +
+      products.image +
+      `" alt="product image" class="img-thumbnail">
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <div class="mb-1">
-                        <h4>`+ products.name + " - " + products.currency + products.cost +`</h4> 
-                        <p> `+ products.description +`</p> 
+                            <h4>` +
+      products.name +
+      " - " +
+      products.currency +
+      products.cost +
+      `</h4> 
+                            <p> ` +
+      products.description +
+      `</p> 
                         </div>
-                        <small class="text-muted">` + products.soldCount + ` Artículos vendidos</small> 
+                        <small class="text-muted">` +
+      products.soldCount +
+      ` Artículos vendidos </small> 
                     </div>
-
                 </div>
             </div>
-        </div>
-        `
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend; 
-    }
+        </div> `;
+
+    document.getElementById("cat-list-container").innerHTML =
+      htmlContentToAppend;
+  }
 }
 
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCTS_URL+localStorage.getItem("catID")+".json").then(function(resultObj){
-        if (resultObj.status === "ok")
-        {
-            productsArray = resultObj.data;
-            showProductsList(productsArray);
-        }
-    });
-});
+//entrega-2 parte-3 FILTROS
+let priceMin = document.getElementById("rangeFilterPriceMin");
+let priceMax = document.getElementById("rangeFilterPriceMax");
+let txtSearch = document.getElementById("filterSearchBar");
+
+document
+  .getElementById("rangeFilterPriceMin")
+  .addEventListener("input", filtrar);
+document
+  .getElementById("rangeFilterPriceMax")
+  .addEventListener("input", filtrar);
+document.getElementById("filterSearchBar").addEventListener("input", filtrar);
+
+function filtrar() {
+  let filtersArray = productsArray;
+  if (priceMin.value != "") {
+    filtersArray = filtersArray.filter(
+      (product) => product.cost >= priceMin.value
+    );
+  }
+
+  if (priceMax.value != "") {
+    filtersArray = filtersArray.filter(
+      (product) => product.cost <= priceMax.value
+    );
+  }
+
+  if (txtSearch.value != "") {
+    filtersArray = filtersArray.filter(
+      (product) =>
+        product.name.toLowerCase().includes(txtSearch.value.toLowerCase()) ||
+        product.description
+          .toLowerCase()
+          .includes(txtSearch.value.toLowerCase())
+    );
+  }
+
+  showProductsList(filtersArray);
+}
+
+document.getElementById("sortAsc").addEventListener("click", btnFiltrarAsc);
+document.getElementById("sortDesc").addEventListener("click", btnFiltrarDesc);
+document.getElementById("sortByCount").addEventListener("click", btnFiltrarRel);
+
+function btnFiltrarAsc() {
+  let sort = productsArray.sort((a, b) => {
+    return a.cost - b.cost;
+  });
+  showProductsList(sort);
+}
+function btnFiltrarDesc() {
+  let sort = productsArray.sort(function (a, b) {
+    return b.cost - a.cost;
+  });
+  showProductsList(sort);
+}
+function btnFiltrarRel() {
+  let sort = productsArray.sort((a, b) => {
+    return b.soldCount - a.soldCount;
+  });
+  showProductsList(sort);
+}
