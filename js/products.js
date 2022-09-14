@@ -20,13 +20,18 @@ fetch(PRODUCTS_URL)
     showProductsList(productsArray);
   });
 
+function setProdID(id){
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html"
+}
+
 function showProductsList(array) {
   let htmlContentToAppend = "";
   /* precio, nombre, descripción, cantidad vendidos e imagen */
   for (let i = 0; i < array.length; i++) {
     let products = array[i];
     htmlContentToAppend +=
-      ` <div class="list-group-item list-group-item-action">
+      ` <div onclick="setProdID(${products.id})" class="list-group-item list-group-item-action cursor-active">
             <div class="row">
                 <div class="col-3">
                     <img src="` +
@@ -64,12 +69,8 @@ let priceMin = document.getElementById("rangeFilterPriceMin");
 let priceMax = document.getElementById("rangeFilterPriceMax");
 let txtSearch = document.getElementById("filterSearchBar");
 
-document
-  .getElementById("rangeFilterPriceMin")
-  .addEventListener("input", filtrar);
-document
-  .getElementById("rangeFilterPriceMax")
-  .addEventListener("input", filtrar);
+document.getElementById("rangeFilterPriceMin").addEventListener("input", filtrar);
+document.getElementById("rangeFilterPriceMax").addEventListener("input", filtrar);
 document.getElementById("filterSearchBar").addEventListener("input", filtrar);
 
 function filtrar() {
