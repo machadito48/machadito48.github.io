@@ -38,6 +38,19 @@
   </nav>
   <main>
     <div class="prodContainer"></div>
+    <div class="container mt-4 nCommentContainer">
+      <h2 class="">Comentar</h2>
+      <label for="commentInput" class="">Su opini&oacute;n:</label><br>
+      <textarea name="commentInput" id="commentInput" cols="50" rows="5"></textarea>
+      <div class="mt-2" style="cursor: pointer; font-size: larger;">
+        <span id="1" class="fa fa-star" onclick="calificar(this)"></span>
+        <span id="2" class="fa fa-star" onclick="calificar(this)"></span>
+        <span id="3" class="fa fa-star" onclick="calificar(this)"></span>
+        <span id="4" class="fa fa-star" onclick="calificar(this)"></span>
+        <span id="5" class="fa fa-star" onclick="calificar(this)"></span>
+      </div>
+      <button id="nCommentBtn" class="btn btn-primary mt-2" type="submit" onclick="newComment()">Enviar</button>
+    </div>
 <!--     <div class="container">
       <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
