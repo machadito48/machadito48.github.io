@@ -34,7 +34,7 @@ nav a {
   margin-bottom: 0;
   background-color: #53C0FB;
   background: url('../img/cover_back.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   color: black;
@@ -194,4 +194,14 @@ a.custom-card:hover {
 }
 .warning {
   color: crimson;
+}
+
+/* .comments {
+  margin-left: 50px;
+} */
+.commentsTitle {
+  padding-top: 2rem;
+}
+textarea {
+  resize: none;
 }
