@@ -18,8 +18,5 @@ function logCheck(){
         window.location.href="login.html"
     }
 }
-function salir(){
-    localStorage.clear();
-}
 
-document.getElementById("user").innerHTML = localStorage.getItem("user")
+
