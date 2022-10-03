@@ -196,12 +196,6 @@ a.custom-card:hover {
   color: crimson;
 }
 
-/* .comments {
-  margin-left: 50px;
-} */
-.commentsTitle {
-  padding-top: 2rem;
-}
 textarea {
   resize: none;
 }
