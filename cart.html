@@ -2,13 +2,13 @@
 <html lang="es">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -30,22 +30,89 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <div class="dropdown">
-            <a class="user btn btn-dark dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+            <a class="user btn btn-dark dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink"
+              data-bs-toggle="dropdown" aria-expanded="false"></a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item nav-link" href="cart.html">Carrito</a></li>
-              <li><a class="dropdown-item nav-link" href="my-profile.html">Perfil</a></li>
-              <li><a class="dropdown-item nav-link" href="login.html" onclick="salir()">Salir</a></li>
+              <li>
+                <a class="dropdown-item nav-link" href="cart.html">Carrito</a>
+              </li>
+              <li>
+                <a class="dropdown-item nav-link" href="my-profile.html">Perfil</a>
+              </li>
+              <li>
+                <a class="dropdown-item nav-link" href="login.html" onclick="salir()">Salir</a>
+              </li>
             </ul>
           </div>
         </ul>
       </div>
     </div>
   </nav>
-  <main>
+  <main class="p-4 pb-5">
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
+      <!-- <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      </div> -->
+      <div class="container text-center mb-4">
+        <h2>Carrito de compras</h2>
       </div>
+
+      <div class="container">
+        <h4>Articulos a comprar</h4>
+        <div class="row border-bottom fw-bold">
+          <span class="col-2 offset-md-2">Nombre</span>
+          <span class="col-2">Costo</span>
+          <span class="col-2">Cantidad</span>
+          <span class="col-2">Subtotal</span>
+        </div>
+        <div class="row align-items-end border-bottom py-2" id="prodCarrito"></div>
+        <div class="row align-items-end border-bottom py-2" id="cartNewProd"></div>
+
+<!-- ---------------------------------------- -->
+
+        <h4 class="mt-4">Tipo de envío</h4>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio1">
+          <label class="form-check-label" for="flexRadio1">
+            Premium 2 a 5 días (15%)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio2" checked>
+          <label class="form-check-label" for="flexRadio2">
+            Express 5 a 8 días (7%)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio3" checked>
+          <label class="form-check-label" for="flexRadio3">
+            Standard 12 a 15 días (5%)
+          </label>
+        </div>
+
+        <h4 class="mt-4">Dirección de envío</h4>
+
+        <div class="row py-2">
+          <div class="col-4">
+            <label for="calle" class="form-label">Calle</label>
+            <input type="text" class="form-control" id="calle">
+          </div>
+          <div class="col-3">
+            <label for="num" class="form-label">Número</label>
+            <input type="text" class="form-control" id="num">
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-4">
+            <label for="esquina" class="form-label">Esquina</label>
+            <input type="text" class="form-control" id="esquina">
+          </div>
+        </div>
+
+<!-- ---------------------------------------- -->
+
+      </div>
+
     </div>
   </main>
   <footer class="text-muted">
@@ -53,9 +120,15 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      <p>
+        Este sitio forma parte de
+        <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+        - 2022
+      </p>
+      <p>
+        Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
+        letra del obligatorio.
+      </p>
     </div>
   </footer>
   <div id="spinner-wrapper">
@@ -68,7 +141,7 @@
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+  <script src="js/cart.js" type="module"></script>
 </body>
 
 </html>

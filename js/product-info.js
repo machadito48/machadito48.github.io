@@ -26,10 +26,13 @@ function showInfo() {
 
   toHTML += `
     <div class="container">
-      <h2 class="border-bottom py-4">${prodData.name}</h2>
+      <div class="border-bottom row">
+        <h2 class="py-4 col-6">${prodData.name}</h2>
+        <div class="col-6 align-self-center text-center"><button type="button" class="btn btn-success" id="btnComprar" onclick="comprar(this)">Comprar</button></div>
+      </div>
     </div>
 
-    <div class="container">
+    <div class="container my-4">
       <span class="fw-bold">Precio</span>
       <p>${prodData.currency + " " + prodData.cost}</p>
 
@@ -75,6 +78,9 @@ function showInfo() {
     `;
 
   document.querySelector(".prodContainer").innerHTML = toHTML;
+}
+function comprar(item){
+  console.log("hola")
 }
 /* -------------------------------- */
 
@@ -178,6 +184,46 @@ function showRelatedInfo(item){
   location.reload(); 
 }
 /* -------------------------------- */
+
+const jsonData = await fetch(PRODUCT_INFO_URL).then((response) => response.json());
+console.log(jsonData)
+
+
+
+/* 
+
+filtersArray = filtersArray.filter(
+      (product) =>
+        product.name.toLowerCase().includes(txtSearch.value.toLowerCase()) ||
+        product.description.toLowerCase().includes(txtSearch.value.toLowerCase())
+    );
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------- */
 /* function showImg() {
   let toImgList = "";
   for (let i = 0; i < prodData.images.length; i++) {
@@ -189,17 +235,8 @@ function showRelatedInfo(item){
     document.querySelector(".imgList").innerHTML = toImgList;
   }
 } 
-<div class="imgList d-flex">
-</div >
 
-<div class="carousel-item active">
-        <img src="..." class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="..." class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="${element}" class="d-block w-100">
-      </div>
 
 */
+
+

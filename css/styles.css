@@ -199,3 +199,11 @@ a.custom-card:hover {
 textarea {
   resize: none;
 }
+
+.cartImg{
+  height: 3rem;
+  width: auto;
+}
+.counttt{
+  width: 50%;
+}

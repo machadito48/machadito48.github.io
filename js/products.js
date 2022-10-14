@@ -91,9 +91,7 @@ function filtrar() {
     filtersArray = filtersArray.filter(
       (product) =>
         product.name.toLowerCase().includes(txtSearch.value.toLowerCase()) ||
-        product.description
-          .toLowerCase()
-          .includes(txtSearch.value.toLowerCase())
+        product.description.toLowerCase().includes(txtSearch.value.toLowerCase())
     );
   }
 
