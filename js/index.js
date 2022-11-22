@@ -13,10 +13,6 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-function logCheck(){
-    if(localStorage.getItem("login") === null){
-        window.location.href="login.html"
-    }
-}
+
 
 

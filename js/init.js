@@ -39,9 +39,22 @@ let getJSONData = function(url){
         return result;
     });
 }
+/* ---------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded',()=>{
+  if(!localStorage.getItem("user")){
+    window.location.href = "login.html";
+  }
+})
 
 /* ---------------------------------------------------- */
 document.querySelector(".user").innerHTML = localStorage.getItem("user")
 function salir(){
   localStorage.clear();
 }
+
+/* ---------------------------------------------------- */
+
+
+
+
