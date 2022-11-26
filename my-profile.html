@@ -26,7 +26,7 @@
   </style>
 </head>
 
-<body>
+<body onload="checkLoggin()">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -45,7 +45,8 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <div class="dropdown">
-            <a class="user btn btn-dark dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+            <a class="user btn btn-dark dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink"
+              data-bs-toggle="dropdown" aria-expanded="false"></a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
               <li><a class="dropdown-item nav-link" href="cart.html">Carrito</a></li>
               <li><a class="dropdown-item nav-link" href="my-profile.html">Perfil</a></li>
@@ -57,11 +58,45 @@
     </div>
   </nav>
   <main>
-    <div class="container">
+    <!-- <div class="container">
       <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
       </div>
+    </div> -->
+
+    <div class="container">
+      <div class="cabezal row my-2 align-items-end">
+        <h2 class="col">Perfil</h2>
+        <div class="col d-flex align-items-end flex-column">
+          <img class="profImage img-thumbnail" src="" alt="">
+        </div>
+      </div>
+      <div class="campos row border-top border-bottom pb-4 pt-1">
+        <div class="col">
+          <label class="form-label mt-3" for="fName">Primer Nombre</label>
+          <input class="form-control" type="text" id="fName" required>
+          <label class="form-label mt-3" for="surname">Primer Apellido</label>
+          <input class="form-control" type="text" id="surname" required>
+          <label class="form-label mt-3" for="mail">E-Mail</label>
+          <input class="form-control" type="email" id="mail">
+          <label class="form-label mt-3" for="contact">Teléfono de contacto</label>
+          <input class="form-control" type="text" id="contact" required>
+        </div>
+        <div class="col px-2">
+          <label class="form-label mt-3" for="sName">Segundo Nombre</label>
+          <input class="form-control" type="text" id="sName">
+          <label class="form-label mt-3" for="sSurname">Segundo Apellido</label>
+          <input class="form-control" type="text" id="sSurname">
+          <label class="form-label mt-3" for="upload">Imagen de perfil</label>
+          <input class="form-control" type="file" id="upload">
+
+        </div>
+      </div>
+      <button class="btn btn-primary my-4 saveBtn" onclick="saveChanges()">Guardar Cambios</button>
     </div>
+
+
+
   </main>
   <footer class="text-muted">
     <div class="container">

@@ -1,17 +1,7 @@
 let productsArray = [];
-
-/* document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + ".json").then(
-      function (resultObj) {
-        if (resultObj.status === "ok") {
-          productsArray = resultObj.data.products;
-          showProductsList(productsArray);
-        }
-      }
-    ); 
-  }); */
-
-//newFunction();
+let priceMin = document.getElementById("rangeFilterPriceMin");
+let priceMax = document.getElementById("rangeFilterPriceMax");
+let txtSearch = document.getElementById("filterSearchBar");
 
 fetch(PRODUCTS_URL)
   .then((response) => response.json())
@@ -20,9 +10,9 @@ fetch(PRODUCTS_URL)
     showProductsList(productsArray);
   });
 
-function setProdID(id){
+function setProdID(id) {
   localStorage.setItem("prodID", id);
-  window.location = "product-info.html"
+  window.location = "product-info.html";
 }
 
 function showProductsList(array) {
@@ -64,15 +54,6 @@ function showProductsList(array) {
   }
 }
 
-//entrega-2 parte-3 FILTROS
-let priceMin = document.getElementById("rangeFilterPriceMin");
-let priceMax = document.getElementById("rangeFilterPriceMax");
-let txtSearch = document.getElementById("filterSearchBar");
-
-document.getElementById("rangeFilterPriceMin").addEventListener("input", filtrar);
-document.getElementById("rangeFilterPriceMax").addEventListener("input", filtrar);
-document.getElementById("filterSearchBar").addEventListener("input", filtrar);
-
 function filtrar() {
   let filtersArray = productsArray;
   if (priceMin.value != "") {
@@ -91,16 +72,14 @@ function filtrar() {
     filtersArray = filtersArray.filter(
       (product) =>
         product.name.toLowerCase().includes(txtSearch.value.toLowerCase()) ||
-        product.description.toLowerCase().includes(txtSearch.value.toLowerCase())
+        product.description
+          .toLowerCase()
+          .includes(txtSearch.value.toLowerCase())
     );
   }
 
   showProductsList(filtersArray);
 }
-
-document.getElementById("sortAsc").addEventListener("click", btnFiltrarAsc);
-document.getElementById("sortDesc").addEventListener("click", btnFiltrarDesc);
-document.getElementById("sortByCount").addEventListener("click", btnFiltrarRel);
 
 function btnFiltrarAsc() {
   let sort = productsArray.sort((a, b) => {
@@ -120,3 +99,15 @@ function btnFiltrarRel() {
   });
   showProductsList(sort);
 }
+
+document
+  .getElementById("rangeFilterPriceMin")
+  .addEventListener("input", filtrar);
+document
+  .getElementById("rangeFilterPriceMax")
+  .addEventListener("input", filtrar);
+document.getElementById("filterSearchBar").addEventListener("input", filtrar);
+
+document.getElementById("sortAsc").addEventListener("click", btnFiltrarAsc);
+document.getElementById("sortDesc").addEventListener("click", btnFiltrarDesc);
+document.getElementById("sortByCount").addEventListener("click", btnFiltrarRel);

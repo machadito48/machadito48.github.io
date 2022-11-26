@@ -20,17 +20,11 @@ fetch(PRODUCT_INFO_COMMENTS_URL)
   });
 
 /* -------------------------------- */
-
 function showInfo() {
   let toHTML = "";
-
+  document.getElementById("prodName").innerHTML = prodData.name;
   toHTML += `
-    <div class="container">
-      <div class="border-bottom row">
-        <h2 class="py-4 col-6">${prodData.name}</h2>
-        <div class="col-6 align-self-center text-center"><button type="button" class="btn btn-success" id="btnComprar" onclick="comprar(this)">Comprar</button></div>
-      </div>
-    </div>
+    
 
     <div class="container my-4">
       <span class="fw-bold">Precio</span>
@@ -79,9 +73,7 @@ function showInfo() {
 
   document.querySelector(".prodContainer").innerHTML = toHTML;
 }
-function comprar(item){
-  console.log("hola")
-}
+
 /* -------------------------------- */
 
 function showImg() {
@@ -97,8 +89,7 @@ function showImg() {
     document.querySelector(".imgList").innerHTML = toImgList;
   }
 
-  document.querySelector(".imgList").firstElementChild.classList.add("active")
-  
+  document.querySelector(".imgList").firstElementChild.classList.add("active");
 }
 /* -------------------------------- */
 
@@ -146,7 +137,6 @@ function newComment() {
   document.getElementById("commentInput").value = "";
 }
 /* -------------------------------- */
-
 function calificar(item) {
   sCount = item.id;
   //console.log(count)
@@ -160,10 +150,9 @@ function calificar(item) {
 }
 /* -------------------------------- */
 
-
 function relatedProd() {
-  let toHTML ="";
-  
+  let toHTML = "";
+
   for (let i = 0; i < prodData.relatedProducts.length; i++) {
     const element = prodData.relatedProducts[i];
     toHTML += `
@@ -174,69 +163,67 @@ function relatedProd() {
     </div>
     </div>
     `;
-    
+
     document.querySelector(".relatedCards").innerHTML = toHTML;
   }
 }
-
-function showRelatedInfo(item){
+function showRelatedInfo(item) {
   localStorage.setItem("prodID", item.id);
-  location.reload(); 
+  location.reload();
 }
 /* -------------------------------- */
-
-const jsonData = await fetch(PRODUCT_INFO_URL).then((response) => response.json());
-console.log(jsonData)
-
-
-
-/* 
-
-filtersArray = filtersArray.filter(
-      (product) =>
-        product.name.toLowerCase().includes(txtSearch.value.toLowerCase()) ||
-        product.description.toLowerCase().includes(txtSearch.value.toLowerCase())
-    );
-
-*/
+/* const actProd = await fetch(PRODUCT_INFO_URL).then((response) =>
+  response.json()
+); */
 
 
 
+function formatItem(actProd) {
+  const obj = {
+    count: 1,
+    id: actProd.id,
+    name: actProd.name,
+    image: actProd.images[0],
+    currency: actProd.currency,
+    unitCost: actProd.cost,
+  };
+  return obj;
+}
 
+document.querySelector("#btnComprar").addEventListener("click", function(){
+  fetch(PRODUCT_INFO_URL)
+  .then((response) => response.json())
+  .then((data) => {
+    actProd = data;
+    let toLocalCartObj = {
+      count: 1,
+      id: actProd.id,
+      name: actProd.name,
+      image: actProd.images[0],
+      currency: actProd.currency,
+      unitCost: actProd.cost,
+    };
+    console.log("🚀 ~ toLocalCartObj", toLocalCartObj)
+    let toLocalCart = [];
+    let fromLocalCart ="";
 
+    if (localStorage.getItem("cart") === null) {
+      toLocalCart.push(toLocalCartObj);
+      localStorage.setItem("cart", JSON.stringify(toLocalCart));
+    } else if (
+      localStorage.getItem("cart") != null &&
+      !localStorage.getItem("cart").includes(toLocalCartObj.id)
+    ) {
+      fromLocalCart = JSON.parse(localStorage.getItem("cart"));
+      console.log(fromLocalCart);
+      fromLocalCart.push(toLocalCartObj);
+      localStorage.setItem("cart", JSON.stringify(fromLocalCart));
+      console.log(fromLocalCart);
+      console.log("fromLocalCart");
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* -------------------------------- */
-/* function showImg() {
-  let toImgList = "";
-  for (let i = 0; i < prodData.images.length; i++) {
-    const element = prodData.images[i];
-    toImgList += `
-      <img src="${element}" class="img-thumbnail w-25 cursor-active">
-    `;
-
-    document.querySelector(".imgList").innerHTML = toImgList;
-  }
-} 
-
-
-*/
-
+    setTimeout(function(){window.location = "cart.html";},50);
+    
+  });
+});
 

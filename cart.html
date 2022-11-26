@@ -11,7 +11,19 @@
   <link href="css/styles.css" rel="stylesheet" />
 </head>
 
-<body>
+<body onload="checkLoggin()">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+  </svg>
+  <div class="alert alert-success d-flex align-items-center visually-hidden" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+      Compra exitosa ! 
+    </div>
+  </div>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -50,9 +62,6 @@
   </nav>
   <main class="p-4 pb-5">
     <div class="container">
-      <!-- <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div> -->
       <div class="container text-center mb-4">
         <h2>Carrito de compras</h2>
       </div>
@@ -65,55 +74,159 @@
           <span class="col-2">Cantidad</span>
           <span class="col-2">Subtotal</span>
         </div>
-        <div class="row align-items-end border-bottom py-2" id="prodCarrito"></div>
-        <div class="row align-items-end border-bottom py-2" id="cartNewProd"></div>
+        <div id="cartList">
 
-<!-- ---------------------------------------- -->
-
-        <h4 class="mt-4">Tipo de envío</h4>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio1">
-          <label class="form-check-label" for="flexRadio1">
-            Premium 2 a 5 días (15%)
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio2" checked>
-          <label class="form-check-label" for="flexRadio2">
-            Express 5 a 8 días (7%)
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio3" checked>
-          <label class="form-check-label" for="flexRadio3">
-            Standard 12 a 15 días (5%)
-          </label>
         </div>
 
-        <h4 class="mt-4">Dirección de envío</h4>
+        <!-- --------------------Envio-------------------- -->
 
-        <div class="row py-2">
-          <div class="col-4">
-            <label for="calle" class="form-label">Calle</label>
-            <input type="text" class="form-control" id="calle">
+        <div id="envio">
+
+          <div class="row">
+
+
+            <div class="col-8">
+              <h4 class="mt-4">Dirección de envío</h4>
+              <span class="visually-hidden alert-danger dirAlert">Faltan datos.</span>
+              <div class="row py-2">
+                <div class="col-6">
+                  <label for="calle" class="form-label">Calle</label>
+                  <input type="text" class="req form-control" id="calle" required>
+                  <label for="esquina" class="form-label">Esquina</label>
+                  <input type="text" class="form-control" id="esquina" required>
+                </div>
+                <div class="col-4">
+                  <label for="puerta" class="form-label">Número</label>
+                  <input type="text" class="form-control" id="puerta" required>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col">
+              <h4 class="mt-4">Tipo de envío</h4>
+              <div class="d-block my-3">
+                <div class="custom-control custom-radio">
+                  <input id="premium" name="shipmentMethod" type="radio" class="custom-control-input" checked required
+                    onclick="setShipMethod(this)">
+                  <label class="custom-control-label" for="premium">Premium 2 a 5 dias (15%)</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input id="express" name="shipmentMethod" type="radio" class="custom-control-input" required
+                    onclick="setShipMethod(this)">
+                  <label class="custom-control-label" for="express">Express 5 a 8 dias (7%)</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input id="standard" name="shipmentMethod" type="radio" class="custom-control-input" required
+                    onclick="setShipMethod(this)">
+                  <label class="custom-control-label" for="standard">Standard 12 a 15 dias (5%)</label>
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div class="col-3">
-            <label for="num" class="form-label">Número</label>
-            <input type="text" class="form-control" id="num">
+
+          <h4 class="mt-4">Costos</h4>
+          <div class="container" id="costos">
+            <div class="border py-2 row d-flex">
+              <p class="my-0 col text-start">Subtotal</p>
+              <span class="col subtotal text-end"></span>
+            </div>
+            <div class="border py-2 row d-flex">
+              <p class="my-0 col text-start">Envio</p>
+              <span class="col envio text-end"></span>
+            </div>
+            <div class="border py-2 row d-flex">
+              <p class="my-0 col text-start">Total ($)</p>
+              <span class="col total text-end"></span>
+            </div>
           </div>
+
         </div>
-        <div class="row py-2">
-          <div class="col-4">
-            <label for="esquina" class="form-label">Esquina</label>
-            <input type="text" class="form-control" id="esquina">
-          </div>
+        <div class="pago mt-4">
+          <span class="selecPago">Forma de pago:</span>
+          <!-- Button trigger modal -->
+          <a class="mx-2 fw-bold" style="cursor: pointer;" id="openModal" data-bs-toggle="modal" data-bs-target="#myModal">
+            Seleccionar
+          </a>
+          <span class="selecPagoFalta text-danger visually-hidden">Debe seleccionar un metodo de pago </span>
         </div>
 
-<!-- ---------------------------------------- -->
+        <button id="closeModal" type="button" class="buyBtn btn btn-primary my-4 w-100" onclick="buy()">Finalizar compra</button>
+
 
       </div>
 
     </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Forma de pago</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- cuerpo -->
+            <div class="credCard my-2">
+
+
+              <!-- tarjetaso -->
+
+              <div class="custom-control custom-radio">
+                <input id="cCard" name="paymentOption" type="radio" class="custom-control-input"
+                  onclick="setPaymentMethod(this)">
+                <label class="custom-control-label" for="cCard">Tarjeta de crédito</label>
+                <span class="mx-4 visually-hidden alert-danger ccAlert">Faltan datos.</span>
+              </div>
+              <hr>
+
+              <div class="d-flex row">
+                <div class="col-6">
+                  <label for="cNum" class="form-label">Número de tarjeta</label>
+                  <input type="text" class="form-control" id="cNum" disabled>
+                  <label for="vence" class="form-label">Vencimiento (MM/AA)</label>
+                  <input type="month" class="form-control" id="vence" min="2020-01" value="2020-01" disabled>
+                </div>
+                <div class="col-6">
+                  <label for="codSeg" class="form-label">Código de seg.</label>
+                  <input type="text" class="form-control" id="codSeg" disabled>
+                </div>
+              </div>
+
+            </div>
+            <div class="bankTransfer mt-5">
+
+
+              <!-- tranferencia -->
+
+              <div class="custom-control custom-radio">
+                <input id="bTransfer" name="paymentOption" type="radio" class="custom-control-input"
+                  onclick="setPaymentMethod(this)">
+                <label class="custom-control-label" for="bTransfer">Transferencia bancaria</label>
+                <span class="mx-4 visually-hidden alert-danger btAlert">Faltan datos.</span>
+              </div>
+              <hr>
+
+              <label for="bAcc" class="form-label">Número de cuenta</label>
+              <input type="text" class="form-control" id="bAcc" disabled>
+
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary"onclick="saveModal()"  >Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -139,9 +252,54 @@
       <div></div>
     </div>
   </div>
+
+  <!-- ----------Templates---------- -->
+
+  <template class="itemTemplate">
+    <div class="row align-items-end border-bottom py-2" id="cartItem">
+      <div class="col-2">
+        <img class="cartImg" alt="">
+      </div>
+      <span class="col-2 nameSpan"></span>
+      <span class="col-2 unitCostSpan"></span>
+      <div class="col-2 row align-items-end">
+        <span class="countInput w-25"></span>
+        <div class="w-50 d-flex">
+          <button class="btn btn-warning sub">
+            < </button>
+              <button class="btn btn-success sum"> > </button>
+        </div>
+      </div>
+      <span class="col-2 fw-bold subtotalSpan"></span>
+      <button class="col-2 btn trashBtn btn-close btn-danger" type="button">
+
+      </button>
+    </div>
+  </template>
+
+
+  <template class="template-costos">
+    <div class="border py-2 row d-flex">
+      <p class="my-0 col text-start">Subtotal</p>
+      <span class="col subtotal text-end"></span>
+    </div>
+    <div class="border py-2 row d-flex">
+      <p class="my-0 col text-start">Envio</p>
+      <span class="col envio text-end"></span>
+    </div>
+    <div class="border py-2 row d-flex">
+      <p class="my-0 col text-start">Total ($)</p>
+      <span class="col total text-end"></span>
+    </div>
+  </template>
+
+
+
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/cart.js" type="module"></script>
+  <script src="js/cart.js"></script>
+
 </body>
 
 </html>
