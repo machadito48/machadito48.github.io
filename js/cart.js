@@ -13,9 +13,9 @@ const saveModalBtn = document.querySelector(".saveModalBtn");
 const trashBtn = document.querySelector(".trashBtn");
 const cCard = document.querySelector("#cCard");
 const bTransfer = document.querySelector("#bTransfer");
-const calle = document.getElementById("calle")
-const esquina = document.getElementById("esquina")
-const puerta = document.getElementById("puerta")
+const calle = document.getElementById("calle");
+const esquina = document.getElementById("esquina");
+const puerta = document.getElementById("puerta");
 
 const templateItem = document.querySelector(".itemTemplate").content;
 const templateCostos = document.querySelector(".template-costos").content;
@@ -141,13 +141,13 @@ function setShipMethod(item) {
   pintarCarrito();
 }
 
-const resetModal = ()=>{
-  cNum.value = ""
-  codSeg.value = "" 
-  bAcc.value = ""
-}
+const resetModal = () => {
+  cNum.value = "";
+  codSeg.value = "";
+  bAcc.value = "";
+};
 function setPaymentMethod(item) {
-  resetModal()
+  resetModal();
   if (item.id === "cCard") {
     console.log(cCard.checked);
     cNum.disabled = false;
@@ -167,45 +167,47 @@ function setPaymentMethod(item) {
 }
 
 function saveModal() {
-  const ccAlert = ()=>{$(".ccAlert").removeClass("visually-hidden")}
-  const btAlert = ()=>{$(".btAlert").removeClass("visually-hidden")}
+  const ccAlert = () => {
+    $(".ccAlert").removeClass("visually-hidden");
+  };
+  const btAlert = () => {
+    $(".btAlert").removeClass("visually-hidden");
+  };
   if (cCard.checked) {
     if (cNum.value != "" && codSeg.value != "") {
       console.log("ok");
-      modal = true
+      modal = true;
 
-      $("#myModal").modal('hide')
+      $("#myModal").modal("hide");
     }
 
     if (cNum.value === "") {
       cNum.classList.add("border-danger");
-      ccAlert()
+      ccAlert();
     } else {
       cNum.classList.remove("border-danger");
     }
     if (codSeg.value === "") {
       codSeg.classList.add("border-danger");
-      ccAlert()
+      ccAlert();
     } else {
       codSeg.classList.remove("border-danger");
     }
-
   }
 
   if (bTransfer.checked) {
     if (bAcc.value === "") {
       bAcc.classList.add("border-danger");
-      btAlert()
+      btAlert();
     } else {
       bAcc.classList.remove("border-danger");
-      console.log("ok")
-      modal= true
+      console.log("ok");
+      modal = true;
 
-      $("#myModal").modal('hide')
-      
+      $("#myModal").modal("hide");
     }
   }
-  $(".selecPagoFalta").addClass("visually-hidden")
+  $(".selecPagoFalta").addClass("visually-hidden");
 }
 
 /*  */
@@ -215,42 +217,46 @@ function succes() {
   calle.value = "";
   esquina.value = "";
   puerta.value = "";
-  direccion = false;  
-  modal = false; 
-  $(".alert-success").removeClass("visually-hidden")
-  setTimeout(function(){location.reload();},2000);
+  direccion = false;
+  modal = false;
+  $(".alert-success").removeClass("visually-hidden");
+  setTimeout(function () {
+    location.reload();
+  }, 2000);
 }
 function buy() {
-  const falta = ()=>{$(".dirAlert").removeClass("visually-hidden")}
-  
+  const falta = () => {
+    $(".dirAlert").removeClass("visually-hidden");
+  };
+
   if (calle.value === "") {
     calle.classList.add("border-danger");
-    falta()
+    falta();
   } else {
     calle.classList.remove("border-danger");
   }
   if (esquina.value === "") {
     esquina.classList.add("border-danger");
-    falta()
+    falta();
   } else {
     esquina.classList.remove("border-danger");
   }
   if (puerta.value === "") {
     puerta.classList.add("border-danger");
-    falta()
+    falta();
   } else {
     puerta.classList.remove("border-danger");
   }
 
-  if(calle.value, esquina.value, puerta.value != ""){
-    $(".dirAlert").addClass("visually-hidden")
-    direccion = true
+  if ((calle.value, esquina.value, puerta.value != "")) {
+    $(".dirAlert").addClass("visually-hidden");
+    direccion = true;
   }
-  if (!modal){
-    $(".selecPagoFalta").removeClass("visually-hidden")
+  if (!modal) {
+    $(".selecPagoFalta").removeClass("visually-hidden");
   }
 
-  if (direccion && modal && !(localStorage.getItem("cart")===null)){succes()}
+  if (direccion && modal && !(localStorage.getItem("cart") === null)) {
+    succes();
+  }
 }
-
-

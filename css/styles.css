@@ -214,3 +214,7 @@ input[required]{
   background-position: right top;
   background-repeat: no-repeat;
 }
+
+.profImage{
+  height: 10vh;
+}
